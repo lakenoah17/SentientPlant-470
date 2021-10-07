@@ -15,7 +15,7 @@ void setup(){
   background(255);
   
   //this loads the file based on the file name
-  sound = new SoundFile(this,"skullsound2.mp3");
+  sound = new SoundFile(this,"Sounds/the-office-fire-drill-michael-scott-oh-my-god-2.mp3");
   
   //this changes the volume level (number between 0 and 1)
   sound.amp(.5);
