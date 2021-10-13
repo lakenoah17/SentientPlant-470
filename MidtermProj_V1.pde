@@ -13,9 +13,26 @@ int time = 0;
 void setup(){
   size(800,800);
   background(255);
+
+  // Load up sounds played in dark
+  SoundFile[] darkSounds = new SoundFile[6];
+  darkSounds[0] = new SoundFile(this,"Sounds/dark/ah-help.mp3");
+  darkSounds[1] = new SoundFile(this,"Sounds/dark/dark-things.mp3");
+  darkSounds[2] = new SoundFile(this,"Sounds/dark/light-curse.mp3");
+  darkSounds[3] = new SoundFile(this,"Sounds/dark/where-curse2.mp3");
+  darkSounds[4] = new SoundFile(this,"Sounds/dark/darker-curse.mp3");
+  darkSounds[5] = new SoundFile(this,"Sounds/dark/darker-and.mp3");
   
-  //this loads the file based on the file name
-  sound = new SoundFile(this,"Sounds/the-office-fire-drill-michael-scott-oh-my-god-2.mp3");
+  // Load up sounds played when touched
+  SoundFile[] touchSounds = new SoundFile[8];
+  touchSounds[0] = new SoundFile(this,"Sounds/touch/grow-teeth.mp3");
+  touchSounds[1] = new SoundFile(this,"Sounds/touch/split-head.mp3");
+  touchSounds[2] = new SoundFile(this,"Sounds/touch/touch-fool.mp3");
+  touchSounds[3] = new SoundFile(this,"Sounds/touch/touch-threat.mp3");
+  touchSounds[4] = new SoundFile(this,"Sounds/misc/cursed-place.mp3");
+  touchSounds[5] = new SoundFile(this,"Sounds/misc/to-suffer.mp3");
+  touchSounds[6] = new SoundFile(this,"Sounds/misc/eat-dirt.mp3");
+  touchSounds[7] = new SoundFile(this,"Sounds/misc/dirt-lettuce.mp3");
   
   //this changes the volume level (number between 0 and 1)
   sound.amp(.5);
@@ -32,7 +49,9 @@ void draw(){
       yellCooldown -= millis() - time;
     }
     else if (sensorReading < valToYellAt) {
-      sound.play();
+      // Play random dark sound
+      int randomNum = random(darkSounds.length);
+      darkSounds[randomNum].play();
       yellCooldown = 2000;
     }
   }
