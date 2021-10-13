@@ -33,6 +33,9 @@ void draw(){
     }
     else if (sensorReading < valToYellAt) {
       sound.play();
+      // Play random dark sound
+      int randomNum = (int)random(darkSounds.length);
+      darkSounds[randomNum].play();
       yellCooldown = 2000;
     }
   }
