@@ -9,13 +9,15 @@ final int valToYellAt = 300;
 int yellCooldown = 0;
 int sensorReading = 500;
 int time = 0;
+SoundFile[] darkSounds;
+SoundFile[] touchSounds;
 
 void setup(){
   size(800,800);
   background(255);
 
   // Load up sounds played in dark
-  SoundFile[] darkSounds = new SoundFile[6];
+  darkSounds = new SoundFile[6];
   darkSounds[0] = new SoundFile(this,"Sounds/dark/ah-help.mp3");
   darkSounds[1] = new SoundFile(this,"Sounds/dark/dark-things.mp3");
   darkSounds[2] = new SoundFile(this,"Sounds/dark/light-curse.mp3");
@@ -24,7 +26,7 @@ void setup(){
   darkSounds[5] = new SoundFile(this,"Sounds/dark/darker-and.mp3");
   
   // Load up sounds played when touched
-  SoundFile[] touchSounds = new SoundFile[8];
+  touchSounds = new SoundFile[8];
   touchSounds[0] = new SoundFile(this,"Sounds/touch/grow-teeth.mp3");
   touchSounds[1] = new SoundFile(this,"Sounds/touch/split-head.mp3");
   touchSounds[2] = new SoundFile(this,"Sounds/touch/touch-fool.mp3");
