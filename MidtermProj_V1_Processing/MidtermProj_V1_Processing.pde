@@ -5,7 +5,7 @@ SoundFile sound;
 Serial arduinoPort;
 
 final int sensorPin = 0;
-final int darkValToYellAt = 350;
+final int darkValToYellAt = 400;
 final int touchValToYellAt = 500;
 int soundCooldown = 0;
 int capacitativeVal = 50;
@@ -74,9 +74,10 @@ void serialEvent(Serial port) {
   // get the ASCII string:
     
     String reading = port.readStringUntil('\n');
-
-    capacitativeVal = FormatReading(reading.split("#")[0]);
-    photoCellVal = FormatReading(reading.split("#")[1]);
+    if (reading != null) {
+      capacitativeVal = FormatReading(reading.split("#")[0]);
+      photoCellVal = FormatReading(reading.split("#")[1]);
+    }
 }
 
 int FormatReading(String reading) {
