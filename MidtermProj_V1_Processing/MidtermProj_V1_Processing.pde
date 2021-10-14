@@ -5,8 +5,8 @@ SoundFile sound;
 Serial arduinoPort;
 
 final int sensorPin = 0;
-final int darkValToYellAt = 300;
-final int touchValToYellAt = 200;
+final int darkValToYellAt = 350;
+final int touchValToYellAt = 500;
 int soundCooldown = 0;
 int capacitativeVal = 50;
 int photoCellVal = 500;
@@ -41,14 +41,14 @@ void setup(){
   
   currSound = darkSounds[0];
   
-  String portName = Serial.list()[0];
+  String portName = Serial.list()[1];
   println(portName);
   arduinoPort = new Serial(this, portName, 9600);
   arduinoPort.bufferUntil('\n');
   time = millis();
 }
 void draw(){
-  if (currSound.isPlaying()) {//!sound.isPlaying()) { 
+  if (!currSound.isPlaying()) {//!sound.isPlaying()) { 
     if(soundCooldown > 0) {
       soundCooldown -= millis() - time;
     }
@@ -88,6 +88,7 @@ int FormatReading(String reading) {
   // convert to an int and map to the screen height:
   int val = int(reading);
   //println(sensorReading);
-  val = int(map(capacitativeVal, 0, 1023, 0, height));
+  val = int(map(val, 0, 1023, 0, height));
+  println(val);
   return val;
 }
